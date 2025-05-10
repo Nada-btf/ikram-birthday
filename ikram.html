@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Countdown</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            margin: 0;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            color: #FFF;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        #birthdayBtn {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: gray;
+            border: none;
+            border-radius: 8px;
+            cursor: not-allowed;
+            transition: background 0.3s ease;
+        }
+
+        #birthdayBtn.active {
+            background: #DAA520;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Countdown to Ikram's Birthday! 🎉</h1>
+    <div id="countdown">Calculating...</div>
+    <button id="birthdayBtn">🎁 Open Birthday Surprise!</button>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const midnight = new Date();
+            midnight.setHours(24, 0, 0, 0); // Set target to next midnight
+
+            const timeLeft = midnight - now;
+
+            if (timeLeft > 0) {
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = 
+                    `${hours}h ${minutes}m ${seconds}s left!`;
+            } else {
+                document.getElementById("countdown").innerHTML = "🎉 It's Midnight! Click the button!";
+                document.getElementById("birthdayBtn").classList.add("active");
+                document.getElementById("birthdayBtn").removeAttribute("disabled");
+                document.getElementById("birthdayBtn").style.cursor = "pointer";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        document.getElementById("birthdayBtn").addEventListener("click", function() {
+            if (this.classList.contains("active")) {
+                window.location.href = "birthday_card.html"; // Change to actual file URL
+            } else {
+                alert("🎂 Patience! The surprise unlocks at midnight!");
+            }
+        });
+
+        updateCountdown();
+    </script>
+</body>
+</html>
