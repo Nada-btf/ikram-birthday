@@ -56,7 +56,7 @@
         function updateCountdown() {
             const now = new Date();
             const midnight = new Date();
-            midnight.setHours(24, 0, 0, 0); // Set target to next midnight
+            midnight.setHours(24, 0, 0, 0); 
 
             const timeLeft = midnight - now;
 
@@ -79,7 +79,7 @@
 
         document.getElementById("birthdayBtn").addEventListener("click", function() {
             if (this.classList.contains("active")) {
-                window.location.href = "birthday_card.html"; // Change to actual file URL
+                window.location.href = "birthday_card.html"; 
             } else {
                 alert("🎂 Patience! The surprise unlocks at midnight!");
             }
